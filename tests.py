@@ -25,7 +25,7 @@ class TestBooksCollector:
     # напиши свои тесты ниже
     # чтобы тесты были независимыми в каждом из них создавай отдельный экземпляр класса BooksCollector()
 
-    # тест 2: Проверка добавления книги второй раз в словарь books_rating
+    # тест 2: Проверка повторного добавления книги в словарь
     def test_add_new_book_added_book_name_not_added(self, collector):
         # добавляем уже имеющуюся книгу
         book_name = 'Война и мир'
@@ -42,7 +42,7 @@ class TestBooksCollector:
         collector.set_book_rating(book_name, rating)
         assert collector.get_book_rating(book_name) == rating
 
-    # тест 4: Проверка не валидной установки рейтинга: 0, 11
+    # тест 4: Проверка невалидной установки рейтинга: 0, 11
     @pytest.mark.parametrize("rating", [0, 11])
     def test_set_book_rating_not_valid_rating_0_11_not_added(self, rating, collector):
         book_name = 'Война и мир'
@@ -54,7 +54,7 @@ class TestBooksCollector:
         book_name = 'Война и мир'
         assert collector.get_book_rating(book_name) == 3
 
-    # тест 6: Проверка списка книги 'Book name' с определенным рейтингом: 1, 5, 10
+    # тест 6: Проверка списка книги 'Война и мир' с определенным рейтингом: 1, 5, 10
     @pytest.mark.parametrize("rating", [1, 5, 10])
     def test_get_books_with_specific_rating_1_5_10_for_book_name_only_one_book_in_list(self, rating, collector):
         book_name = 'Война и мир'
@@ -65,28 +65,28 @@ class TestBooksCollector:
     def test_get_books_rating_dictionary_received_book_name_3(self, collector):
         assert len(collector.get_books_rating()) == 3
 
-    # тест 8: Проверяем добавление книги 'Book name' в Избранное
+    # тест 8: Проверяем добавление книги 'Война и мир' в Избранное
     def test_add_book_in_favorites_book_name_added_in_favorites(self, collector):
         book_name = 'Война и мир'
         collector.add_book_in_favorites(book_name)
         assert len(collector.get_list_of_favorites_books()) == 1
         assert book_name in collector.get_list_of_favorites_books()
 
-    # тест 9: Проверяем повторное добавление книги 'Book name' в Избранное
+    # тест 9: Проверяем повторное добавление книги 'Война и мир' в Избранное
     def test_add_book_in_favorites_book_name_added_only_once(self, collector):
         book_name = 'Война и мир'
         collector.add_book_in_favorites(book_name)
         collector.add_book_in_favorites(book_name)
         assert len(collector.get_list_of_favorites_books()) == 1
 
-    # тест 10: Проверяем удаление книги 'Book name' из Избранного
+    # тест 10: Проверяем удаление книги 'Война и мир' из Избранного
     def test_delete_book_from_favorites_book_name_deleted(self, collector):
         book_name = 'Война и мир'
         collector.add_book_in_favorites(book_name)
         collector.delete_book_from_favorites(book_name)
         assert len(collector.get_list_of_favorites_books()) == 0
 
-    # тест 11: Проверка получения списка Избранных книг
+    # тест 11: Проверка получения наименований списка Избранных книг
     def test_get_list_of_favorites_books_book_name_received(self, collector):
         book_name_1 = 'Война и мир'
         book_name_2 = 'Дядя Федор, Кот и Пес'
