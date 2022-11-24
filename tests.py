@@ -47,7 +47,7 @@ class TestBooksCollector:
     def test_set_book_rating_not_valid_rating_0_11_not_added(self, rating, collector):
         book_name = 'Война и мир'
         collector.set_book_rating(book_name, rating)
-        assert collector.get_book_rating(book_name) != rating
+        assert collector.get_book_rating(book_name) == 3
 
     # тест 5: Проверка получения рейтинга книги по ее имени
     def test_get_book_rating_book_name_rating_received_3(self, collector):
